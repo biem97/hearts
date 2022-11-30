@@ -7,7 +7,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="bg-slate-300 dark:bg-gray-600">
+    <div className="bg-slate-300 dark:bg-gray-300">
       <Navbar />
       <div className="h-[calc(100vh-4rem)] px-5 max-w-7xl mx-auto">
         {children}
