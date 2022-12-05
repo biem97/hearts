@@ -5,15 +5,11 @@ interface LayoutProps {
   children: ReactElement;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="bg-slate-300 dark:bg-gray-300">
+    <div>
       <Navbar />
-      <div className="h-[calc(100vh-4rem)] px-5 max-w-7xl mx-auto">
-        {children}
-      </div>
+      <div className="px-5 max-w-7xl mx-auto mt-4">{children}</div>
     </div>
   );
-};
-
-export default Layout;
+}

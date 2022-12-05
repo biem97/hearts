@@ -6,7 +6,7 @@ const THEMES_MODE = {
   dark: <MoonIcon className="h-6 w-6 text-yellow-300" />,
 };
 
-const ThemeToggle = () => {
+export default function ThemeToggle() {
   const [ready, setReady] = useState<boolean>(false);
   const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("light");
 
@@ -46,6 +46,4 @@ const ThemeToggle = () => {
   return (
     <button onClick={handleThemeChange}>{THEMES_MODE[currentTheme]}</button>
   );
-};
-
-export default ThemeToggle;
+}

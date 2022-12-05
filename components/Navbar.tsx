@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, BellIcon, XMarkIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ThemeToggle from "./ThemeToggle";
@@ -8,8 +8,7 @@ import ThemeToggle from "./ThemeToggle";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "Gallery", href: "/gallery" },
-  { name: "Projects", href: "#" },
-  { name: "Calendar", href: "#" },
+  { name: "Upload", href: "/upload" },
 ];
 
 function classNames(...classes: string[]) {
@@ -20,7 +19,7 @@ export default function Navbar() {
   const { pathname } = useRouter();
 
   return (
-    <Disclosure as="nav" className="bg-slate-500 dark:bg-gray-800">
+    <Disclosure as="nav" className="border-b border-black dark:border-white">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -38,20 +37,8 @@ export default function Navbar() {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <Image
-                    className="block h-8 w-auto lg:hidden"
-                    src="/assets/logo.svg"
-                    alt="Your Company"
-                    width={64}
-                    height={64}
-                  />
-                  <Image
-                    className="hidden h-8 w-auto lg:block"
-                    src="/assets/logo.svg"
-                    alt="Your Company"
-                    width={64}
-                    height={64}
-                  />
+                  <Image className="block h-8 w-auto lg:hidden" src="/assets/logo.svg" alt="Your Company" width={64} height={64} />
+                  <Image className="hidden h-8 w-auto lg:block" src="/assets/logo.svg" alt="Your Company" width={64} height={64} />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -60,14 +47,10 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.href === pathname
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "px-3 py-2 rounded-md text-sm font-medium"
+                          item.href === pathname ? "bg-gray-900 text-white" : "text-gray-700 dark:text-gray-300  ",
+                          "px-3 py-2 rounded-md text-sm font-medium hover:text-pink-700 dark:hover:text-pink-700"
                         )}
-                        aria-current={
-                          item.href === pathname ? "page" : undefined
-                        }
+                        aria-current={item.href === pathname ? "page" : undefined}
                       >
                         {item.name}
                       </a>
@@ -88,15 +71,9 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <Menu.Button className="flex rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <Image
-                        className="h-8 w-8 rounded-full"
-                        src="/assets/logo.svg"
-                        alt=""
-                        width={64}
-                        height={64}
-                      />
+                      <UserCircleIcon className="block h-6 w-6 text-black dark:text-white" aria-hidden="true" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -111,39 +88,21 @@ export default function Navbar() {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
+                          <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
                             Your Profile
                           </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
+                          <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
                             Settings
                           </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
+                          <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
                             Sign out
                           </a>
                         )}
@@ -163,9 +122,7 @@ export default function Navbar() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.href === pathname
-                      ? "bg-gray-900 text-white"
-                      : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    item.href === pathname ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
                     "block px-3 py-2 rounded-md text-base font-medium"
                   )}
                   aria-current={item.href === pathname ? "page" : undefined}
